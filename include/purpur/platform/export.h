@@ -1,0 +1,6 @@
+
+#ifndef _C_PURPURINA_PLATFORM_EXPORT_H_
+#define _C_PURPURINA_PLATFORM_EXPORT_H_
+
+
+#endif

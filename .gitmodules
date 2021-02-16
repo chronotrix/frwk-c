@@ -1,0 +1,3 @@
+[submodule "submodules/purpurina-frwk"]
+	path = submodules/purpurina-frwk
+	url = git@github.com:purpurina-engine/purpurina-frwk.git
