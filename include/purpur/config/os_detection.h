@@ -1,13 +1,13 @@
 
-#ifndef _PURPURINA_FRWK_OS_DETECTION_HPP_
-#define _PURPURINA_FRWK_OS_DETECTION_HPP_
+#ifndef _C_PURPURINA_OS_DETECTION_HPP_
+#define _C_PURPURINA_OS_DETECTION_HPP_
 
     #if defined(_WIN32) || defined(__WIN32__)
 
         #define CPPR_OS_WINDOWS
         #define CPPR_OS_WIN32
 
-    #elif Defined(__APPLE__) || defined(MACOSX) || defined(macintosh) || defined(Macintosh)
+    #elif defined(__APPLE__) || defined(MACOSX) || defined(macintosh) || defined(Macintosh)
 
         #define CPPR_OS_MACOS
 
