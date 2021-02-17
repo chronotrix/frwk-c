@@ -1,1 +1,4 @@
 *.h linguist-language=C
+* text=auto eol=lf
+
+submodules/* linguist-vendored

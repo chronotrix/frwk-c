@@ -52,5 +52,6 @@ Mkfile.old
 dkms.conf
 
 # project files
+.vs
 build
 out
