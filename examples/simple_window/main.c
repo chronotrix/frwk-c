@@ -1,25 +1,25 @@
 
 #include <stdio.h>
 
-#include <purpur/platform/platform.h>
-#include <purpur/platform/window.h>
+#include <ct/platform/platform.h>
+#include <ct/platform/window.h>
 
 int main(int argc, const char* argv[])
 {
-	if (!ppr_platformInit()) {
+	if (!ct_platformInit()) {
 		printf("Could not start platform correctly.");
 		return 1;
 	}
 
-	pprWindow* window = ppr_createWindowWithStyle(800, 600, "My C Purpurina Window", p_Default);
+	ctWindow* window = ct_createWindowWithStyle(800, 600, "My C Chronotrix Window", ct_Default);
 
-	ppr_windowSetVisible(window, p_true);
+	ct_windowSetVisible(window, ct_true);
 
-	while (ppr_windowIsVisible(window)) {
-		ppr_platformPollEvents();
+	while (ct_windowIsVisible(window)) {
+		ct_platformPollEvents();
 	}
 
-	if (!ppr_platformTerminate()) {
+	if (!ct_platformTerminate()) {
 		return 1;
 	}
 	return 0;

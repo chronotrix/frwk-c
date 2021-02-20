@@ -1,25 +1,25 @@
 
 # includes
-ppr_file_list(
+ct_file_list(
     ROOT ${INCPATH}
     OUTPUT INC
     window.h
     export.h
     platform.h
 )
-ppr_group(${INC} NAME "include")
+ct_group(${INC} NAME "include")
 
 # sources
-ppr_file_list(
+ct_file_list(
     ROOT ${SRCPATH}
     OUTPUT SRC
     window.cpp
     platform.cpp
 )
-ppr_group(${SRC} NAME "src")
+ct_group(${SRC} NAME "src")
 
 
-cppr_add_library(cppr_platform
+cct_add_library(ctx_platform
     SOURCES ${SRC} ${INC}
-    DEPENDS purpurina_platform
+    DEPENDS chronotrix_platform
     )

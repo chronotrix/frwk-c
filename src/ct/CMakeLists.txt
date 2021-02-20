@@ -1,7 +1,5 @@
 
-include(${C_PURPUR_PATH}/cmake/helpers.cmake)
-
-set(INCPATH ${C_PURPUR_INC}/config)
+set(INCPATH ${C_CT_INC}/config)
 
 set(CONFIG_HEADERS
     ${INCPATH}/api.h
@@ -14,6 +12,6 @@ set(LIBRARY_OUTPUT_PATH "${CMAKE_BINARY_DIR}/lib")
 # mark to compile commands
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # define export symbol prefix
-add_definitions(-DCPPR_EXPORTS)
+add_definitions(-DCCT_EXPORTS)
 
-cppr_add_lib_directory(platform)
+cct_add_lib_directory(platform)

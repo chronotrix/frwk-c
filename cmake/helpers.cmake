@@ -2,27 +2,27 @@
 include(CMakeParseArguments)
 
 #
-# Add Purpurina C directory
+# Add Chronotrix C directory
 #
 # @param package_name {STRING}	cmake target name
 #
-function(cppr_add_lib_directory package_name)
+function(cct_add_lib_directory package_name)
 
-    set(INCPATH ${C_PURPUR_INC}/${package_name})
-    set(SRCPATH ${C_PURPUR_SRC}/${package_name})
+    set(INCPATH ${C_CT_INC}/${package_name})
+    set(SRCPATH ${C_CT_SRC}/${package_name})
 
     add_subdirectory(${package_name})
 
 endfunction()
 
 #
-# Add Purpurina C library
+# Add Chronotrix C library
 #
 # @param target {TARGET}			cmake target
 # @param SOURCES {STRING[]}		list of files
 # @param DEPENDS? {(TARGET | STRING)[]}	optional - list of dependencies
 #
-macro(cppr_add_library target)
+macro(cct_add_library target)
 
 	# parse arguments
 	cmake_parse_arguments(ARGS "" "" "SOURCES;DEPENDS" ${ARGN})
@@ -39,7 +39,7 @@ macro(cppr_add_library target)
     set_target_properties(${target} PROPERTIES DEBUG_POSTFIX "_dbg")
 
 	# [WIN32] config
-    if(PPR_OS_WINDOWS)
+    if(CT_OS_WINDOWS)
         # include the major version number in Windows shared library names (but not import library names)
         set_target_properties(${target} PROPERTIES SUFFIX "${CMAKE_SHARED_LIBRARY_SUFFIX}")	
 		if(BUILD_SHARED_LIBS)
@@ -48,16 +48,16 @@ macro(cppr_add_library target)
     endif()
     
     # [LINUX] set the version and soversion of the target
-    set_target_properties(${target} PROPERTIES SOVERSION ${cpurpur_VERSION_MAJOR}.${cpurpur_VERSION_MINOR})
-    set_target_properties(${target} PROPERTIES VERSION ${cpurpur_VERSION})
+    set_target_properties(${target} PROPERTIES SOVERSION ${chronotrix_c_VERSION_MAJOR}.${chronotrix_c_VERSION_MINOR})
+    set_target_properties(${target} PROPERTIES VERSION ${chronotrix_c_VERSION})
 
 	# [WIN32] Set the target folder for Visual Studio
 	set_target_properties(${target} PROPERTIES FOLDER "c_frwk")
 
-	# Add <purpur/../../> as public include directory
+	# Add <ct/../../> as public include directory
 	target_include_directories(${target}
-							PUBLIC "$<BUILD_INTERFACE:${C_PURPUR_PATH}/include>"
-							PRIVATE "${C_PURPUR_PATH}/src")
+							PUBLIC "$<BUILD_INTERFACE:${C_CT_PATH}/include>"
+							PRIVATE "${C_CT_PATH}/src")
 	target_include_directories(${target} INTERFACE $<INSTALL_INTERFACE:include>)
 
 	# Link libraries libs
@@ -67,7 +67,7 @@ macro(cppr_add_library target)
 
 	# For static builds we need to define the static flag to proper compilation
 	if(NOT BUILD_SHARED_LIBS)
-		target_compile_definitions(${target} PUBLIC "PPR_STATIC")
+		target_compile_definitions(${target} PUBLIC "CT_STATIC")
 	endif()
 
     # add install rules
@@ -85,7 +85,7 @@ endmacro()
 # @param SOURCES {STRING[]}		list of files
 # @param DEPENDS? {(TARGET | STRING)[]}	optional - list of dependencies
 #
-macro(cppr_add_executable target)
+macro(cct_add_executable target)
 
 	# Parse arguments
 	cmake_parse_arguments(ARGS "" "" "SOURCES;DEPENDS" ${ARGN})
@@ -108,7 +108,7 @@ macro(cppr_add_executable target)
 	endif()
 
 	# [WIN32]
-	if(PPR_OS_WINDOWS AND BUILD_SHARED_LIBS)
+	if(CT_OS_WINDOWS AND BUILD_SHARED_LIBS)
 		set_target_properties(${target} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 	endif()
 endmacro()
